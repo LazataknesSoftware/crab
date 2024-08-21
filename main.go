@@ -41,12 +41,10 @@ func main() {
 	var random bool
 	var repeats uint
 	var self bool
-	var cut uint
 	flag.BoolVar(&free, "P", false, "No prefixes (in, of, by, the, etc.)")
 	flag.BoolVar(&random, "s", false, "Shuffle shortened words")
 	flag.BoolVar(&self, "D", false, "Ignore dictionary")
 	flag.UintVar(&repeats, "r", 1, "Number of repeats")
-	flag.UintVar(&cut, "c", 3, "This flag determines minimum of copied symbols of every word")
 	flag.Parse()
 	done := strings.ToLower(regexp.MustCompile(" +").ReplaceAllString(flag.Arg(0), " "))
 	if len(flag.Args()) == 0 || strings.Trim(done, " ") == "" {
@@ -99,20 +97,12 @@ func main() {
 				}
 			}
 		}
-		is_good_when_cut_option := []bool{}
-		for _, s := range otherw {
-			is_good_when_cut_option = append(is_good_when_cut_option, (len(s) >= int(cut)))
-		}
-		if (slices.Contains(is_good_when_cut_option, false)) {
-			fmt.Println(`Setting value of "-c" flag, which is more than word's length is not allowed.
-HINT: Find word which is the smallest from your keywords. Its length is good for "-c" flag.`)
-			os.Exit(1)
-		}
 		if self {
+			done = backup
 			otherw = strings.Split(done, " ")
 		}
 		for _, fi := range otherw {
-			done = strings.ReplaceAll(done, fi, fi[0:rand.Intn(int(cut))+1])
+			done = strings.ReplaceAll(done, fi, fi[0:rand.Intn(len(fi))+1])
 		}
 
 		if !random {
