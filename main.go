@@ -50,6 +50,7 @@ func main() {
 	if len(flag.Args()) == 0 || strings.Trim(done, " ") == "" {
 		fmt.Println("Crab - CReate ABbreviations\n(C) 2024, Alexander Gavrilovets")
 		flag.Usage()
+		fmt.Println("Documentation is here: https://github.com/LazataknesSoftware/crab")
 		os.Exit(1)
 	}
 	var text []string
