@@ -61,25 +61,26 @@ func main() {
 		temp_prefixes, _ := regexp.Compile(PREFIXES)
 		done = temp_prefixes.ReplaceAllString(done, "")
 	}
+	no_I_Q = regexp.MustCompile(`[^\w ]`)
+	done = strings.Trim(no_I_Q.ReplaceAllString(done, ""), " ")
 	backup := done
 	var i uint = 0
 
+	dictionary, file_removed := os.ReadFile("./dict.txt")
+	dictionary_txt := strings.Replace(string(dictionary), "\r\n", "\n", -1)
+	text = strings.Split(string(dictionary_txt), "\n")
+	if file_removed != nil {
+		fmt.Println("Oops, dictionary (dict.txt) removed!")
+		os.Exit(1)
+	}
+	CheckSyntax(&text)
+	
 	for i = 0; i < repeats; i++ {
+		done = backup
 		if !self {
-			dictionary, file_removed := os.ReadFile("./dict.txt")
-			dictionary_txt := strings.Replace(string(dictionary), "\r\n", "\n", -1)
-			text = strings.Split(string(dictionary_txt), "\n")
-			if file_removed != nil {
-				fmt.Println("Oops, dictionary (dict.txt) removed!")
-				os.Exit(1)
-			}
-			CheckSyntax(&text)
-
-			no_I_Q, _ = regexp.Compile("[!?]")
-			done = no_I_Q.ReplaceAllString(done, "")
+			backup = done
 			featured := []string{}
 			featured_one := []string{}
-			done = backup
 			for _, line := range text {
 				featured = append(featured, strings.Split(line, " - ")[1])
 				featured_one = append(featured_one, strings.Split(line, " - ")[0])
@@ -98,7 +99,7 @@ func main() {
 			}
 		}
 		if self {
-			done = backup
+			backup = done
 			otherw = strings.Split(done, " ")
 		}
 		for _, fi := range otherw {
