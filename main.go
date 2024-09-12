@@ -41,9 +41,11 @@ func main() {
 	var random bool
 	var repeats uint
 	var self bool
+	var ultrashort bool
 	flag.BoolVar(&free, "P", false, "No prefixes (in, of, by, the, etc.)")
 	flag.BoolVar(&random, "s", false, "Shuffle shortened words")
 	flag.BoolVar(&self, "D", false, "Ignore dictionary")
+	flag.BoolVar(&ultrashort, "u", false, "Maximum shortings")
 	flag.UintVar(&repeats, "r", 1, "Number of repeats")
 	flag.Parse()
 	done := strings.ToLower(regexp.MustCompile(" +").ReplaceAllString(flag.Arg(0), " "))
@@ -55,7 +57,7 @@ func main() {
 	}
 	var text []string
 	otherw := []string{}
-	const PREFIXES = "\\b (to|from|in|is|of|at|about|the|and|or|may|might|by|[.,!?])\\b|(\\-|\\+)"
+	const PREFIXES = "\\b (to|from|in|is|of|at|about|for|the|and|or|may|might|by|[.,!?])\\b|(\\-|\\+|\\b[Aa]\\b)"
 	var no_I_Q *regexp.Regexp
 
 	if free {
@@ -104,7 +106,15 @@ func main() {
 			otherw = strings.Split(done, " ")
 		}
 		for _, fi := range otherw {
-			done = strings.ReplaceAll(done, fi, fi[0:rand.Intn(len(fi))+1])
+			rnd := rand.Intn(len(fi)) + 1
+			if ultrashort && rnd < 2 {
+				rnd = 1
+			} else if ultrashort && rnd < 3 {
+				rnd = 2
+			} else if ultrashort {
+				rnd = rand.Intn(3) + 1
+			}
+			done = strings.ReplaceAll(done, fi, fi[0:rnd])
 		}
 
 		if !random {
