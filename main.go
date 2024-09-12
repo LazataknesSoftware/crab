@@ -42,9 +42,11 @@ func main() {
 	var repeats uint
 	var self bool
 	var ultrashort bool
+	var exclude bool
 	flag.BoolVar(&free, "P", false, "No prefixes (in, of, by, the, etc.)")
 	flag.BoolVar(&random, "s", false, "Shuffle shortened words")
 	flag.BoolVar(&self, "D", false, "Ignore dictionary")
+	flag.BoolVar(&exclude, "x", false, "Exclude some words")
 	flag.BoolVar(&ultrashort, "u", false, "Maximum shortings")
 	flag.UintVar(&repeats, "r", 1, "Number of repeats")
 	flag.Parse()
@@ -57,7 +59,7 @@ func main() {
 	}
 	var text []string
 	otherw := []string{}
-	const PREFIXES = "\\b (to|from|in|is|of|at|about|for|the|and|or|may|might|by|[.,!?])\\b|(\\-|\\+|\\b[Aa]\\b)"
+	const PREFIXES = "\\b (to|from|in|is|of|at|about|for|who|which|what|when|the|and|or|may|might|by|[.,!?])\\b|(\\-|\\+|\\b [Aa]\\b)"
 	var no_I_Q *regexp.Regexp
 
 	if free {
@@ -66,6 +68,20 @@ func main() {
 	}
 	no_I_Q = regexp.MustCompile(`[^\w ]`)
 	done = strings.Trim(no_I_Q.ReplaceAllString(done, ""), " ")
+
+	FutureTemplate := []string{}
+
+	if exclude {
+		for _, xr := range strings.Split(done, " ") {
+		IsRemoved := rand.Intn(100) + 1
+		if IsRemoved >= 50 {
+			FutureTemplate = append(FutureTemplate, xr)
+		}
+		
+	}
+	done = strings.Join(FutureTemplate, " ")
+}
+
 	backup := done
 	var i uint = 0
 
@@ -77,7 +93,7 @@ func main() {
 		os.Exit(1)
 	}
 	CheckSyntax(&text)
-	
+
 	for i = 0; i < repeats; i++ {
 		done = backup
 		if !self {
