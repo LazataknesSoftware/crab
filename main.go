@@ -59,7 +59,7 @@ func main() {
 	}
 	var text []string
 	otherw := []string{}
-	const PREFIXES = "\\b (to|from|in|is|of|at|about|for|who|which|what|when|the|and|or|may|might|by|[.,!?])\\b|(\\-|\\+|\\b [Aa]\\b)"
+	const PREFIXES = "\\b (to|from|in|is|of|at|about|for|who|which|what|when|where|whom|the|and|or|may|might|by|[.,!?])\\b|(\\-|\\+|\\b [Aa]\\b)"
 	var no_I_Q *regexp.Regexp
 
 	if free {

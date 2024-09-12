@@ -86,6 +86,34 @@ compga
 compga
 ```
 
+## `-u` flag
+Consider following command line:
+
+`$ crab "small company which makes games"`
+
+Its output will be: `smcomwhichmg`.
+
+This abbreviation is too long, isn't it? There is `-u` flag which shortens word maximally.
+
+Try it:
+
+`$ crab -u "small company which makes games"`
+
+Its output will be: `scowmgam`.
+
+## `-x` flag
+Consider following command line:
+
+`$ crab -u "small company which makes games"`
+
+Do you remember the past abbreviation? It is short, but if you want to more, you can use `-x` flag, which excludes some keywords.
+
+Try it:
+
+`$ crab -x -u "small company which makes games"`
+
+Its output will be: `scowhm`.
+
 <DIV ALIGN="CENTER"><H1>Dictionary</H1></DIV>
 
 All abbreviations like `sw - software`, `tv - television`, `0 - nothing`, etc. `crab` takes from `dict.txt`. 
