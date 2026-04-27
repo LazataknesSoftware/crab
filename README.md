@@ -1,5 +1,11 @@
-<a href="#"></a>
-<DIV ALIGN="CENTER"><H1>Об этой программе</H1></DIV>
+[Русский](#about-ru) | [English](#about-en)
+<a href="#about-ru"></a>
+<div align="center"><h1>Эта версия больше не поддерживается</h1></div>
+
+Во время его использования было обнаружено, что эта версия нестабильна (опции иногда не работают по непонятным причинам) и не поддерживает создание аббревиатур на русском языке. Переходите на [версию, написанную на Java](https://github.com/LazataknesSoftware/crab-jvm), так как она гораздо стабильнее.
+
+
+<DIV ALIGN="CENTER"><H1 id="about">Об этой программе</H1></DIV>
 
 **Crab** (🦀) - это английская аббревиатура из "**CR**eate **AB**breviations". Если у вас есть ключевые слова для проекта, но вы не можете придумать ему название, то **Crab** вам поможет.
 
@@ -145,6 +151,10 @@ compga
 Просто удалите ненужную аббревиатуру.
 
 ---
+<div align="center"><h1 id="about-en">This version is no longer maintained</h1></div>
+
+During the usage of this version it is seen that it is unstable (switches don't work because of mysterious reasons) and doesn't support creation of Russian abbreviations. Use [Java version](https://github.com/LazataknesSoftware/crab-jvm), because it is more stable.
+
 <DIV ALIGN="CENTER"><H1>About this tool</H1></DIV>
 
 **Crab** (🦀) is abbreviation from "**CR**eate **AB**breviations". If you have keywords for your project, but you can't invent name for your project, then **Crab** will help you.
