@@ -1,3 +1,150 @@
+<a href="#"></a>
+<DIV ALIGN="CENTER"><H1>Об этой программе</H1></DIV>
+
+**Crab** (🦀) - это английская аббревиатура из "**CR**eate **AB**breviations". Если у вас есть ключевые слова для проекта, но вы не можете придумать ему название, то **Crab** вам поможет.
+
+---
+
+<DIV ALIGN="CENTER"><H1>Поддерживаемые операционные системы</H1></DIV>
+
+* Windows 10 1607 или новее
+* Android: [Termux](https://github.com/termux/termux-app)
+* <S>Linux</S>
+* <S>MacOS</S>
+
+---
+
+<DIV ALIGN="CENTER"><H1>Где я могу это загрузить?</H1></DIV>
+
+Перейдите в раздел "Releases" и выберите `crab.exe`, если у вас Windows, или `crab`, если вы на Android и там установлен Termux.
+
+---
+
+<DIV ALIGN="CENTER"><H1>Опции этой программы</H1></DIV>
+
+## Опция `-D`
+Посмотрите на следующую команду:
+
+`$ crab "Lazataknes Software"`
+
+Результатом будет `lazataknsw`. Не понравилось, как `software` сократилось в `sw`? Вам нужна опция `-D`!
+
+Попробуем!
+
+`$ crab -D "Lazataknes Software"`
+
+Результатом будет `lazatasof`.
+
+## Опция `-P`
+Посмотрите на следующую команду:
+
+`$ crab "Mike at home"`
+
+Результатом будет `mikathom`.
+
+`at` всё испортило? Секунду! вы можете запустить `crab` с опцией `-P`! Попробуем!
+
+`$ crab -P "Mike at home"`
+
+Результатом будет `mikeho`.
+
+## `-s` flag
+Посмотрите на следующую команду:
+
+`$ crab "What is laptop?"`
+
+Результатом будет `whaslaptop`.
+
+Хотите перемешать сокращения? Без проблем! Опция `-s` Вам поможет.
+
+Попробуйте:
+
+`$ crab -s "What is laptop?"`
+
+Результатом будет `swhl`.
+
+---
+
+## `-r` flag
+Посмотрите на следующую команду:
+
+`$ crab "computer game"`
+
+Результатом будет `compg`.
+
+Не хочется вводить `crab "computer game"` каждый раз? Тогда опция `-r` спешит на помощь!
+
+Попробуйте:
+
+`$ crab -r=5 "computer game"`
+
+Результатом будет
+```
+compgame
+compg
+compgam
+compga
+compga
+```
+
+## `-u` flag
+Посмотрите на следующую команду:
+
+`$ crab "small company which makes games"`
+
+Результатом будет `smcomwhichmg`.
+
+Эта аббревиатура получилась слишком длинной, не так ли? Для решения таких проблем есть опция `-u`, которая максимально сокращает слова.
+
+Попробуйте:
+
+`$ crab -u "small company which makes games"`
+
+Результатом будет `scowmgam`.
+
+## `-x` flag
+Посмотрите на следующую команду:
+
+`$ crab -u "small company which makes games"`
+
+Помните предыдущую аббревиатуру? Она короткая, но если вы хотите сократить ее еще больше, вы можете использовать опцию `-x`, которая исключается некоторые ключевые слова.
+
+Попробуйте:
+
+`$ crab -x -u "small company which makes games"`
+
+Результатом будет `scowhm`.
+
+<DIV ALIGN="CENTER"><H1>Словарь</H1></DIV>
+
+Все аббревиатуры по типу `sw - software`, `tv - television`, `0 - nothing` и т.д. `crab` получает из `dict.txt`. 
+
+⚠️ **Осторожно:** Если вы удалите `dict.txt`, то `crab` не запуститься (однако вы можете это обойти с помощью опции `-D`).
+
+## Добавление или удаление сокращений
+### Добавление
+Если вы хотите добавить слово, то добавьте выражение вида `abbr - abbreviation` в конец `dict.txt`.
+
+✔️ Примеры:
+
+* `mem - memory`
+* `gpu - videocard`
+* `ver - version`
+* `kb - keyboard`
+* `snd - sound`
+
+➡️ **Замечания**: 
+> 1. Аббревиатуры, состоящие более чем из одного слова, должны быть первыми в `dict.txt`, иначе `crab` не запустится!
+> 2. Пустые линии и пробелы в `dict.txt` запрещены.
+
+❎ **НЕ** пишите так:
+* `V - volume, version`
+* `X - extended, execute`
+
+### Удаление
+Просто удалите ненужную аббревиатуру.
+
+---
 <DIV ALIGN="CENTER"><H1>About this tool</H1></DIV>
 
 **Crab** (🦀) is abbreviation from "**CR**eate **AB**breviations". If you have keywords for your project, but you can't invent name for your project, then **Crab** will help you.
@@ -141,12 +288,4 @@ If you want to add word, then append abbreviation like `abbr - abbreviation` int
 * `X - extended, execute`
 
 ### Removing
-Just remove disliked abbreviation! It is simple, isn't it?
-
-### Behavior when `dict.txt` has values-duplicates (e.g. `V - volume, vol - volume`)
-The first key `(V)` will have mory priority than the second.
-
-<DIV ALIGN="CENTER">
-  <H1>When you will have questions, then...</H1>
-  <span>...make an issue!</span>
-</DIV>
+Just remove disliked abbreviation.
